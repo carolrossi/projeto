@@ -1,7 +1,8 @@
 "use client";
 import { useState } from 'react';
 import './page.css';
-// import link from '/homealuno/page.js'
+import { useRouter } from 'next/navigation';
+
 
 export default function Portal() {
   const [activeForm, setActiveForm] = useState(null);
@@ -28,16 +29,22 @@ export default function Portal() {
       [name]: value
     }));
   };
+ const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (activeForm === 'aluno') {
-      console.log('Login Aluno:', { ra: formData.ra, senha: formData.senha });
+      // if (formData.ra === '123' && formData.senha === 'senha123') {
+        console.log('Login Aluno bem-sucedido');
+        router.push('/homealuno'); 
+      // } else {
+      //   alert('Essa senha não existe');
+      // }
     } else {
       console.log(`Login ${activeForm}:`, { cpf: formData.cpf, senha: formData.senha });
     }
   };
-
+  
   return (
     <div className="overflow-y-hidden h-screen bg-[url('/background.jpg')] bg-cover bg-center bg-no-repeat flex flex-col">
       <div className="pr-8 flex justify-end items-center">
@@ -53,7 +60,7 @@ export default function Portal() {
 
       <div className={`flex flex-col items-center justify-center text-[#1f557b] font-bold text-6xl titulo transition-opacity duration-700 ${activeForm ? 'fade-out' : 'fade-in'}`}>
         <h1 className='text-shadow-lg'>Olá, seja bem vindo!</h1>
-        <h4 className='text-2xl'>Controle acadêmico de presença de forma prática e segura.</h4>
+        <h4 className='text-2xl'>texto texto texto</h4>
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center pb-70">
@@ -67,7 +74,7 @@ export default function Portal() {
               <button
                 key={type}
                 onClick={() => handleButtonClick(type)}
-                className="w-40 h-20 bg-white rounded-[10px] cursor-pointer hover:bg-blue-200 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1 text-black"
+                className="w-40 h-20 bg-white rounded-[10px] cursor-pointer hover:bg-blue-200 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1"
                 type="button"
               >
                 {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -77,7 +84,7 @@ export default function Portal() {
         ) : (
           <div className="bg-white p-10 rounded-[20px] shadow-2xl w-full max-w-md slide-in">
             <div className="flex justify-between items-center mb-2">
-              <h3 className="text-xl font-bold text-black">
+              <h3 className="text-xl font-bold text-gray-800">
                 {activeForm === 'aluno' && 'Login do Aluno'}
                 {activeForm === 'professor' && 'Login do Professor'}
                 {activeForm === 'coordenacao' && 'Login da Coordenação'}
@@ -141,6 +148,7 @@ export default function Portal() {
 
               <div>
                 <button
+                  
                   type="submit"
                   className="w-full flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-[#1f557b] rounded-[10px] cursor-pointer hover:bg-[#0e3754] transition-all duration-300"
                 >
@@ -169,11 +177,11 @@ export default function Portal() {
         )}
       </div>
 
-
+      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-sm opacity-100 ">
           <div className="bg-white rounded-lg shadow-md w-full max-w-md p-6 relative transform transition-all duration-500 scale-100 opacity-100">
-       
+            {/* Header */}
             <div className="flex justify-between items-center border-b pb-2 mb-4">
               <h3 className="text-xl font-semibold text-gray-900 flex items-center justify-center">QR Code</h3>
               <button
@@ -184,11 +192,15 @@ export default function Portal() {
               </button>
             </div>
 
+            {/* Body */}
+
             <div className=' flex flex-col items-center justify-center'>
               <p>Escaneie o QR code no seu telefone/tablet:</p>
               <img src='./qrcode.jpg' ></img>
             </div>
           
+
+            
           </div>
         </div>
       )}
