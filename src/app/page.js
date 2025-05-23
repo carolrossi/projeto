@@ -177,11 +177,11 @@ export default function Portal() {
         )}
       </div>
 
-      {/* Modal */}
+
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-sm opacity-100 ">
           <div className="bg-white rounded-lg shadow-md w-full max-w-md p-6 relative transform transition-all duration-500 scale-100 opacity-100">
-            {/* Header */}
+          
             <div className="flex justify-between items-center border-b pb-2 mb-4">
               <h3 className="text-xl font-semibold text-gray-900 flex items-center justify-center">QR Code</h3>
               <button
@@ -192,7 +192,7 @@ export default function Portal() {
               </button>
             </div>
 
-            {/* Body */}
+     
 
             <div className=' flex flex-col items-center justify-center'>
               <p>Escaneie o QR code no seu telefone/tablet:</p>
