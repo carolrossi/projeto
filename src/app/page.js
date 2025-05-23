@@ -3,7 +3,6 @@ import { useState } from 'react';
 import './page.css';
 import { useRouter } from 'next/navigation';
 
-
 export default function Portal() {
   const [activeForm, setActiveForm] = useState(null);
   const [formData, setFormData] = useState({
@@ -29,52 +28,51 @@ export default function Portal() {
       [name]: value
     }));
   };
- const router = useRouter();
+  const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (activeForm === 'aluno') {
-      // if (formData.ra === '123' && formData.senha === 'senha123') {
-        console.log('Login Aluno bem-sucedido');
-        router.push('/homealuno'); 
-      // } else {
-      //   alert('Essa senha não existe');
-      // }
+      router.push('/homealuno');
     } else {
       console.log(`Login ${activeForm}:`, { cpf: formData.cpf, senha: formData.senha });
     }
   };
-  
+
   return (
-    <div className="overflow-y-hidden h-screen bg-[url('/background.jpg')] bg-cover bg-center bg-no-repeat flex flex-col">
+    <div className="overflow-y-hidden h-screen bg-[url('/background-sm.jpg')]  md:bg-[url('/background.jpg')] bg-cover bg-center bg-no-repeat flex flex-col">
       <div className="pr-8 flex justify-end items-center">
-        <div className="flex items-center gap-4">
-          <img src="./logo2.png" width={150} alt="Logo" />
-          <span className="h-14 w-1 bg-[#1f557b]"></span>
-          <h2 className="text-[#1f557b] text-2xl font-bold">
-            <span className="block">Centro Educacional</span>
-            <span className="block">Prof. Tereza Costa</span>
+        <div className="flex items-center gap-4 w-[100%] md:w-auto">
+          <img
+            className="w-40 mx-30 sm:mx-auto md:mx-0"
+            src="./logo2.png"
+            alt="Logo"
+          />
+          <span className="hidden sm:block h-14 w-1 bg-[#1f557b]"></span>
+          <h2 className="text-[#1f557b] text-[15px] md:text-2xl font-bold">
+            <span className="hidden sm:block">Centro Educacional</span>
+            <span className="hidden sm:block">Prof. Tereza Costa</span>
           </h2>
         </div>
       </div>
 
       <div className={`flex flex-col items-center justify-center text-[#1f557b] font-bold text-6xl titulo transition-opacity duration-700 ${activeForm ? 'fade-out' : 'fade-in'}`}>
-        <h1 className='text-shadow-lg'>Olá, seja bem vindo!</h1>
-        <h4 className='text-2xl'>texto texto texto</h4>
+        <h1 className='text-4xl md:text-[49px] md: lg:text-[50px] '>Olá, seja bem vindo!</h1>
+        <h4 className='text-[18px]'>texto texto texto</h4>
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center pb-70">
+      <div className="flex-1 flex flex-col items-center justify-center pb-20 sm:pb-32">
         <div className={`transition-opacity duration-700 ${activeForm ? 'fade-out' : 'fade-in'}`}>
-          <h1 className='m-5 text-[#1f557b] font-bold text-[18px]'>Escolha abaixo um perfil para acessar.</h1>
+          <h1 className='m-5 text-[#1f557b] font-bold text-[16px] md:text-[18px]'>Escolha abaixo um perfil para acessar.</h1>
         </div>
 
         {!activeForm ? (
-          <div className="flex gap-10">
+          <div className="flex gap-10 flex-col sm:flex-col md:flex-row">
             {['aluno', 'professor', 'coordenacao'].map(type => (
               <button
                 key={type}
                 onClick={() => handleButtonClick(type)}
-                className="w-40 h-20 bg-white rounded-[10px] cursor-pointer hover:bg-blue-200 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1"
+                className="w-60 h-20 md:w-40 md:h-20 bg-white rounded-[10px] cursor-pointer hover:bg-blue-200 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1"
                 type="button"
               >
                 {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -82,7 +80,7 @@ export default function Portal() {
             ))}
           </div>
         ) : (
-          <div className="bg-white p-10 rounded-[20px] shadow-2xl w-full max-w-md slide-in">
+          <div className="bg-white p-6 sm:p-10 rounded-[20px] shadow-2xl w-[90%] sm:w-[80%] md:w-full max-w-md slide-in mt-8 sm:mt-0">
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-xl font-bold text-gray-800">
                 {activeForm === 'aluno' && 'Login do Aluno'}
@@ -148,7 +146,6 @@ export default function Portal() {
 
               <div>
                 <button
-                  
                   type="submit"
                   className="w-full flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-[#1f557b] rounded-[10px] cursor-pointer hover:bg-[#0e3754] transition-all duration-300"
                 >
@@ -177,11 +174,9 @@ export default function Portal() {
         )}
       </div>
 
-
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-sm opacity-100 ">
           <div className="bg-white rounded-lg shadow-md w-full max-w-md p-6 relative transform transition-all duration-500 scale-100 opacity-100">
-          
             <div className="flex justify-between items-center border-b pb-2 mb-4">
               <h3 className="text-xl font-semibold text-gray-900 flex items-center justify-center">QR Code</h3>
               <button
@@ -191,16 +186,10 @@ export default function Portal() {
                 ✕
               </button>
             </div>
-
-     
-
-            <div className=' flex flex-col items-center justify-center'>
+            <div className='flex flex-col items-center justify-center'>
               <p>Escaneie o QR code no seu telefone/tablet:</p>
-              <img src='./qrcode.jpg' ></img>
+              <img src='./qrcode.jpg' alt="QR Code"></img>
             </div>
-          
-
-            
           </div>
         </div>
       )}
