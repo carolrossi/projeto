@@ -1,6 +1,7 @@
 'use client' 
 
 import Header from '../components/Header/header.jsx'
+import Footer from '../components/Footer/page.jsx'
 import { useState, useEffect } from 'react'
 
 
@@ -50,12 +51,11 @@ export default function HomeAluno() {
                     <h4 className=' flex justify-center font-bold mt-2'>Você possui</h4>
                     <h1 className='flex justify-center font-extrabold text-4xl text-[#1d577b]'>4</h1>
                     <h4 className=' flex justify-center font-bold mb-2'>faltas no semestre atual</h4>
-                    <button
-                        type='submit'
-                        className='w-full flex justify-center rounded-b-3xl bg-[#1d577b] text-white hover:text-gray-400 font-bold p-2 cursor-pointer'
-                    >
+                    <h1 className='w-full flex justify-center rounded-b-3xl bg-[#1d577b] text-white hover:text-gray-400 font-bold p-2 cursor-pointer'> 
+                        <a href='/faltasaluno'>
                         Verificar minhas faltas
-                    </button>
+                        </a>
+                    </h1>
                 </div>
             </div>
 
@@ -99,6 +99,8 @@ export default function HomeAluno() {
         </div>
     </div>
 </div>
+
+        <Footer />
         </>
     );
 }

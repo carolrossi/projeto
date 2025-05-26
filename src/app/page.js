@@ -175,7 +175,7 @@ export default function Portal() {
         )}
       </div>
 
-      {/* MODAL CENTRALIZADO */}
+
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-sm p-4">
           <div className="bg-white rounded-lg shadow-lg w-full max-w-sm sm:max-w-md p-6 relative max-h-screen overflow-y-auto">
