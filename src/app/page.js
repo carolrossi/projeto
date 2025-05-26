@@ -28,6 +28,7 @@ export default function Portal() {
       [name]: value
     }));
   };
+
   const router = useRouter();
 
   const handleSubmit = (e) => {
@@ -40,11 +41,11 @@ export default function Portal() {
   };
 
   return (
-    <div className="overflow-y-hidden h-screen bg-[url('/background-sm.jpg')]  md:bg-[url('/background.jpg')] bg-cover bg-center bg-no-repeat flex flex-col">
+    <div className="overflow-y-hidden h-screen bg-[url('/background-sm.jpg')] md:bg-[url('/background.jpg')] bg-cover bg-center bg-no-repeat flex flex-col">
       <div className="pr-8 flex justify-end items-center">
         <div className="flex items-center gap-4 w-[100%] md:w-auto">
           <img
-            className="w-40 mx-30 sm:mx-auto md:mx-0"
+            className="w-22 md:w-40 mx-38 sm:mx-10 md:mx-0"
             src="./logo2.png"
             alt="Logo"
           />
@@ -57,8 +58,8 @@ export default function Portal() {
       </div>
 
       <div className={`flex flex-col items-center justify-center text-[#1f557b] font-bold text-6xl titulo transition-opacity duration-700 ${activeForm ? 'fade-out' : 'fade-in'}`}>
-        <h1 className='text-4xl md:text-[49px] md: lg:text-[50px] '>Olá, seja bem vindo!</h1>
-        <h4 className='text-[18px]'>texto texto texto</h4>
+        <h1 className='text-3xl md:text-[49px] lg:text-[50px]'>Olá, seja bem vindo!</h1>
+        <h4 className='hidden md:block text-[18px]'>texto texto texto</h4>
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center pb-20 sm:pb-32">
@@ -80,7 +81,7 @@ export default function Portal() {
             ))}
           </div>
         ) : (
-          <div className="bg-white p-6 sm:p-10 rounded-[20px] shadow-2xl w-[90%] sm:w-[80%] md:w-full max-w-md slide-in mt-8 sm:mt-0">
+          <div className="bg-white p-4 sm:p-6 rounded-[20px] shadow-2xl w-[88%] sm:w-[80%] md:w-full max-w-md slide-in mt-8 sm:mt-0 max-h-[500px] overflow-y-auto">
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-xl font-bold text-gray-800">
                 {activeForm === 'aluno' && 'Login do Aluno'}
@@ -95,7 +96,7 @@ export default function Portal() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
               {activeForm === 'aluno' ? (
                 <div>
                   <label htmlFor="ra" className="block text-sm font-medium text-gray-700">
@@ -174,11 +175,12 @@ export default function Portal() {
         )}
       </div>
 
+      {/* MODAL CENTRALIZADO */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-sm opacity-100 ">
-          <div className="bg-white rounded-lg shadow-md w-full max-w-md p-6 relative transform transition-all duration-500 scale-100 opacity-100">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)] backdrop-blur-sm p-4">
+          <div className="bg-white rounded-lg shadow-lg w-full max-w-sm sm:max-w-md p-6 relative max-h-screen overflow-y-auto">
             <div className="flex justify-between items-center border-b pb-2 mb-4">
-              <h3 className="text-xl font-semibold text-gray-900 flex items-center justify-center">QR Code</h3>
+              <h3 className="text-xl font-semibold text-gray-900">QR Code</h3>
               <button
                 onClick={() => setShowModal(false)}
                 className="text-gray-400 hover:text-gray-600"
@@ -186,9 +188,9 @@ export default function Portal() {
                 ✕
               </button>
             </div>
-            <div className='flex flex-col items-center justify-center'>
-              <p>Escaneie o QR code no seu telefone/tablet:</p>
-              <img src='./qrcode.jpg' alt="QR Code"></img>
+            <div className="flex flex-col items-center justify-center">
+              <p className="mb-4 text-center">Escaneie o QR code no seu telefone/tablet:</p>
+              <img src="./qrcode.jpg" alt="QR Code" className="w-48 h-48 sm:w-64 sm:h-64" />
             </div>
           </div>
         </div>
